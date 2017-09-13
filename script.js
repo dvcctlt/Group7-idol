@@ -17,6 +17,25 @@ app.factory('recognizeService', function($http) {
     }
 });
 
+app.directive("fileread", [() => ({
+        scope: {
+            fileread: "="
+        },
+
+        link(scope, element, attributes) {
+            element.bind("change", changeEvent => {
+                const reader = new FileReader();
+                reader.onload = loadEvent => {
+                    scope.$apply(() => {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    })]);
+
+
 app.controller('mainCtrl', function($scope, recognizeService) {
     $scope.isLoading = false;
 
@@ -51,6 +70,8 @@ app.controller('mainCtrl', function($scope, recognizeService) {
         });
     }
 
+
+	
     // Danh sách ảnh để test
     $scope.testImages = ["http://tse3.mm.bing.net/th?id=OIP.M62d737028ee51f22482fab76bdfe112do1&pid=15.1", "http://tse4.mm.bing.net/th?id=OIP.M93d1646690a0f345e561a80523529bb2o1&pid=15.1", "http://media.ngoisao.vn/resize_580/news/2014/11/30/miu-le-20.jpg", "http://static.giaoducthoidai.vn/uploaded/hainv/2016_01_27/images16422691452168028hotgirlhaiphongxinhnhumong191657_uzve.jpg?width=500"];
 
