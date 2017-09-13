@@ -17,23 +17,23 @@ app.factory('recognizeService', function($http) {
     }
 });
 
-app.directive("fileread", [() => ({
-        scope: {
-            fileread: "="
-        },
+// app.directive("fileread", [() => ({
+//         scope: {
+//             fileread: "="
+//         },
 
-        link(scope, element, attributes) {
-            element.bind("change", changeEvent => {
-                const reader = new FileReader();
-                reader.onload = loadEvent => {
-                    scope.$apply(() => {
-                        scope.fileread = loadEvent.target.result;
-                    });
-                }
-                reader.readAsDataURL(changeEvent.target.files[0]);
-            });
-        }
-    })]);
+//         link(scope, element, attributes) {
+//             element.bind("change", changeEvent => {
+//                 const reader = new FileReader();
+//                 reader.onload = loadEvent => {
+//                     scope.$apply(() => {
+//                         scope.fileread = loadEvent.target.result;
+//                     });
+//                 }
+//                 reader.readAsDataURL(changeEvent.target.files[0]);
+//             });
+//         }
+//     })]);
 
 
 app.controller('mainCtrl', function($scope, recognizeService) {
