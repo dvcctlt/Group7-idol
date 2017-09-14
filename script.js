@@ -39,7 +39,7 @@ app.directive("fileread", [() => ({
 app.controller('mainCtrl', function($scope, recognizeService) {
     $scope.isLoading = false;
 
-    $scope.$watch('imageLink', function(oldValue, newValue) {
+    $scope.$watch('input.imageLink', function(oldValue, newValue) {// có sửa 
         $scope.faces = [];
         $scope.faceDisplay = [];
     });
@@ -51,7 +51,7 @@ app.controller('mainCtrl', function($scope, recognizeService) {
 
         $scope.isLoading = true;
         // Gọi hàm recognize của service
-        recognizeService.recognize($scope.imageLink).then(result => {
+        recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
             $scope.faces = result.data;
 
             // Dựa vào kết quả trả về để set style động cho class idol-face
