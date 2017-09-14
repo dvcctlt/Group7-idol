@@ -53,7 +53,7 @@
 
         <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
         <div class="source-image">
-            <img ng-if="imageLink" ng-src="{{imageLink}}" id="source-image" class="ui" />
+            <img ng-if="input.imageLink" ng-src="{{input.imageLink}}" id="source-image" class="ui" />
             <div class="idol-face" ng-repeat="face in faceDisplay" ng-style="face.style">
                 <span class="idol-name">{{face.name}}</span>
             </div>
