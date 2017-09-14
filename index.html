@@ -17,7 +17,7 @@
 
         <!-- Form để dán ảnh và submit -->
         <div class="ui form">
-            <div class="inline fields">
+<!--             <div class="inline fields">
                             <label for="fruit">Dán link vào đây hoặc upload ảnh</label>
                             <div class="field" ng-click="input.source = 'link'">
                                 <div class="ui radio checkbox">
@@ -32,11 +32,11 @@
                                 </div>
                             </div>
                         </div>
-
+ -->
             <div class="field">
                 <div ng-class="{loading: isLoading}" class="ui action input">
-                    <input type="text" ng-if="input.source == 'link'" ng-model="input.imageLink" placeholder="Link ảnh"/>
-                    <input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh"/>
+                    <input type="text" ng-if="input.source == 'link'" ng-model="imageLink" placeholder="Link ảnh"/>
+                   // <input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh"/>
                     <button ng-disabled="isLoading || !imageLink" ng-click="recognize()" class="ui icon primary button">
                         <span ng-if="!isLoading">
                                         <i class="search icon"></i>
