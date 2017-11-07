@@ -4,7 +4,6 @@ var app = angular.module('app', []);
 app.factory('recognizeService', function($http) {
     return {
         recognize: function(imgLink) {
-            //var url = 'https://wt-huyhoang8a5-gmail-com-0.run.webtask.io/idol-recognize';
             var url = 'https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/hello';
             return $http({
                 method: 'POST',
