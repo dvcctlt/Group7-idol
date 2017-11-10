@@ -19,7 +19,7 @@ app.factory('upload', [
     '$http',
     ($http) => ({
         uploadImage(imgBase64) {
-            toastr.info("Đang up ảnh");
+           // toastr.info("Đang up ảnh");
             const url = 'https://api.imgur.com/3/image';
             var base = imgBase64.replace('data:image/jpeg;base64,', '').replace('data:image/png;base64,', '').replace('data:image/gif;base64,', '');
 
