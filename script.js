@@ -70,8 +70,8 @@ app.controller('mainCtrl', function($scope, recognizeService) {
 
         $scope.isLoading = true;
         // Gọi hàm recognize của service
-        recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-            $scope.faces = result.data;
+        //recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+          //  $scope.faces = result.data;
 		
 		
 		if ($scope.input.source == 'link') {
