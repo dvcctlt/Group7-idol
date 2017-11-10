@@ -30,7 +30,7 @@ app.factory('upload', [
                     'Authorization': 'Client-ID 8201546b0614bb1;'
                 },
                 data: {
-                    image: imgBase64// base
+                    image: base
                 }
             });
         },
