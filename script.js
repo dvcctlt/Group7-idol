@@ -36,7 +36,7 @@ app.factory('recognizeService', function($http) {
         },
     })
 ]);*/
-app.directive("fileread", [() => ({
+/*app.directive("fileread", [() => ({
         scope: {
             fileread: "="
         },
@@ -52,7 +52,7 @@ app.directive("fileread", [() => ({
                 reader.readAsDataURL(changeEvent.target.files[0]);
             });
         }
-    })]);
+    })]);*/
 
 
 app.controller('mainCtrl', function($scope, recognizeService) {
@@ -69,6 +69,35 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             return;
 
         $scope.isLoading = true;
+		
+		
+		 if ($scope.input.source == 'link') {
+			recognizeService.recognize($scope.input.imageLink).then(result => {
+            $scope.faces = result.data;
+
+            // Dựa vào kết quả trả về để set style động cho class idol-face
+            $scope.faceDisplay = result.data.map(rs => {
+                return {
+                    style: {
+                        top: rs.face.top + 'px',
+                        left: rs.face.left + 'px',
+                        width: rs.face.width + 'px',
+                        height: rs.face.height + 'px'
+                    },
+                    name: rs.idol.name
+                }
+            });
+            $scope.isLoading = false;
+        });
+            }/* else {
+                recognizeService.uploadImageImgur($scope.input.imageLink).then(result => {
+                    //let url = result.data.url;
+                    let url = result.data.data.link;
+                    $scope.input.imageLink = url;
+                    return url;
+                }).then(recognizeService.recognizeImage.bind(recognizeService)).then(displayResult).catch(displayError);
+            }
+		
         // Gọi hàm recognize của service
         recognizeService.recognize($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
@@ -86,7 +115,7 @@ app.controller('mainCtrl', function($scope, recognizeService) {
                 }
             });
             $scope.isLoading = false;
-        });
+        });*/
     }
 
     // Danh sách ảnh để test
