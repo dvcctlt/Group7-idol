@@ -55,7 +55,7 @@ app.directive("fileread", [() => ({
     })]);
 
 
-app.controller('mainCtrl', function($scope, recognizeService) {
+app.controller('mainCtrl', function($scope, recognizeService, upload) {
     $scope.isLoading = false;
 
     $scope.$watch('input.imageLink', function(oldValue, newValue) {// có sửa 
@@ -64,7 +64,54 @@ app.controller('mainCtrl', function($scope, recognizeService) {
     });
 
     // Gọi hàm này khi người dùng click button "Nhận diện"
-    $scope.recognize = function() {
+	$scope.recognize = () => {
+            if (!isImageValid() || $scope.isLoading)
+                return;
+
+            $scope.isLoading = true;
+
+            if ($scope.input.source == 'link') {
+            recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+            $scope.faces = result.data;
+			$scope.faceDisplay = result.data.map(rs => {
+                return {
+                    style: {
+                        top: rs.face.top + 'px',
+                        left: rs.face.left + 'px',
+                        width: rs.face.width + 'px',
+                        height: rs.face.height + 'px'
+                    },
+                    name: rs.idol.name
+                }
+            });
+            $scope.isLoading = false;
+			});
+        } else {
+                upload.recognize($scope.input.imageLink).then(result => {
+                    //let url = result.data.url;
+                    let url = result.data.data.link;
+                    $scope.input.imageLink = url;
+                    return url;
+                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+						$scope.faces = result.data;
+			            $scope.faceDisplay = result.data.map(rs => {
+							return {
+								style: {
+								top: rs.face.top + 'px',
+								left: rs.face.left + 'px',
+								width: rs.face.width + 'px',
+								height: rs.face.height + 'px'
+								},
+								name: rs.idol.name
+							}
+						});
+						$scope.isLoading = false;
+					});
+					);
+			}
+        }
+		
+  /*  $scope.recognize = function() {
         if ($scope.isLoading)
             return;
 
@@ -129,9 +176,9 @@ app.controller('mainCtrl', function($scope, recognizeService) {
                     name: rs.idol.name
                 }
             });
-            $scope.isLoading = false;
-        });*/
-    }
+            $scope.isLoading = false; 
+        });
+    }*/
 
 
 	
