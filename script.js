@@ -36,7 +36,7 @@ app.factory('recognizeService', function($http) {
         },
     })
 ]);*/
-/*app.directive("fileread", [() => ({
+app.directive("fileread", [() => ({
         scope: {
             fileread: "="
         },
@@ -52,7 +52,7 @@ app.factory('recognizeService', function($http) {
                 reader.readAsDataURL(changeEvent.target.files[0]);
             });
         }
-    })]);*/
+    })]);
 
 
 app.controller('mainCtrl', function($scope, recognizeService) {
