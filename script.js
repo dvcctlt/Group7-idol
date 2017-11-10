@@ -15,10 +15,11 @@ app.factory('recognizeService', function($http) {
         }
     }
 });
-app.factory('upload', function($http) {
-    return {
-       recognize: function(imgBase64) {
-            //toastr.info("Đang up ảnh");
+app.factory('upload', [
+    '$http',
+    ($http) => ({
+        uploadImage(imgBase64) {
+            toastr.info("Đang up ảnh");
             const url = 'https://api.imgur.com/3/image';
             var base = imgBase64.replace('data:image/jpeg;base64,', '').replace('data:image/png;base64,', '').replace('data:image/gif;base64,', '');
 
@@ -26,16 +27,15 @@ app.factory('upload', function($http) {
                 method: 'POST',
                 url,
                 headers: {
-                    'Authorization': 'Client-ID c8dadae2b00f61d'
+                    'Authorization': 'Client-ID c8dadae2b00f61d;'
                 },
                 data: {
                     image: base
                 }
             });
-        }
-    }
-});
-
+        },
+    })
+]);
 app.directive("fileread", [() => ({
         scope: {
             fileread: "="
@@ -70,28 +70,14 @@ app.controller('mainCtrl', function($scope, recognizeService) {
 
         $scope.isLoading = true;
         // Gọi hàm recognize của service
-        //recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-          //  $scope.faces = result.data;
+       recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+           $scope.faces = result.data;
 		
 		
 		if ($scope.input.source == 'link') {
-                 recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+            recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
             $scope.faces = result.data;
-            } else {
-                upload.recognize($scope.input.imageLink).then(result => {
-                    //let url = result.data.url;
-                    let url = result.data.data.link;
-                    $scope.input.imageLink = url;
-                    return url;
-                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-            $scope.faces = result.data;);
-            }
-		
-		
-		
-
-            // Dựa vào kết quả trả về để set style động cho class idol-face
-            $scope.faceDisplay = result.data.map(rs => {
+			$scope.faceDisplay = result.data.map(rs => {
                 return {
                     style: {
                         top: rs.face.top + 'px',
@@ -103,13 +89,54 @@ app.controller('mainCtrl', function($scope, recognizeService) {
                 }
             });
             $scope.isLoading = false;
-        });
+			});
+        } else {
+                upload.recognize($scope.input.imageLink).then(result => {
+                    //let url = result.data.url;
+                    let url = result.data.data.link;
+                    $scope.input.imageLink = url;
+                    return url;
+                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+						$scope.faces = result.data;
+			            $scope.faceDisplay = result.data.map(rs => {
+							return {
+								style: {
+								top: rs.face.top + 'px',
+								left: rs.face.left + 'px',
+								width: rs.face.width + 'px',
+								height: rs.face.height + 'px'
+								},
+								name: rs.idol.name
+							}
+						});
+						$scope.isLoading = false;
+					});
+					);
+			}
+		
+		
+		
+
+            // Dựa vào kết quả trả về để set style động cho class idol-face
+         /*   $scope.faceDisplay = result.data.map(rs => {
+                return {
+                    style: {
+                        top: rs.face.top + 'px',
+                        left: rs.face.left + 'px',
+                        width: rs.face.width + 'px',
+                        height: rs.face.height + 'px'
+                    },
+                    name: rs.idol.name
+                }
+            });
+            $scope.isLoading = false;
+        });*/
     }
 
 
 	
     // Danh sách ảnh để test
-    $scope.testImages = ["http://tse3.mm.bing.net/th?id=OIP.M62d737028ee51f22482fab76bdfe112do1&pid=15.1", "http://tse4.mm.bing.net/th?id=OIP.M93d1646690a0f345e561a80523529bb2o1&pid=15.1", "http://media.ngoisao.vn/resize_580/news/2014/11/30/miu-le-20.jpg", "http://static.giaoducthoidai.vn/uploaded/hainv/2016_01_27/images16422691452168028hotgirlhaiphongxinhnhumong191657_uzve.jpg?width=500"];
+    //$scope.testImages = ["http://tse3.mm.bing.net/th?id=OIP.M62d737028ee51f22482fab76bdfe112do1&pid=15.1", "http://tse4.mm.bing.net/th?id=OIP.M93d1646690a0f345e561a80523529bb2o1&pid=15.1", "http://media.ngoisao.vn/resize_580/news/2014/11/30/miu-le-20.jpg", "http://static.giaoducthoidai.vn/uploaded/hainv/2016_01_27/images16422691452168028hotgirlhaiphongxinhnhumong191657_uzve.jpg?width=500"];
 
     // Danh sách idol
     $scope.idols = [
