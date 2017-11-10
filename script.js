@@ -55,7 +55,7 @@ app.directive("fileread", [() => ({
     })]);
 
 
-app.controller('mainCtrl', function($scope, recognizeService, upload) {
+app.controller('mainCtrl', function($scope, recognizeService) {
     $scope.isLoading = false;
 
     $scope.$watch('input.imageLink', function(oldValue, newValue) {// có sửa 
