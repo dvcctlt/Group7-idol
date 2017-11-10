@@ -90,23 +90,6 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             $scope.isLoading = false;
         });
             } else {
-                recognizeService.recognize($scope.input.imageLink).then(result => {
-            $scope.faces = result.data;
-
-            // Dựa vào kết quả trả về để set style động cho class idol-face
-            $scope.faceDisplay = result.data.map(rs => {
-                return {
-                    style: {
-                        top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
-                        width: rs.face.width + 'px',
-                        height: rs.face.height + 'px'
-                    },
-                    name: rs.idol.name
-                }
-            });
-            $scope.isLoading = false;
-        });
             }
 		
         // Gọi hàm recognize của service
