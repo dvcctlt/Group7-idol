@@ -15,7 +15,7 @@ app.factory('recognizeService', function($http) {
         }
     }
 });
-/*app.factory('upload', [
+app.factory('upload', [
     '$http',
     ($http) => ({
         uploadImage(imgBase64) {
@@ -35,7 +35,7 @@ app.factory('recognizeService', function($http) {
             });
         },
     })
-]);*/
+]);
 app.directive("fileread", [() => ({
         scope: {
             fileread: "="
