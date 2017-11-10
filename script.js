@@ -71,7 +71,7 @@ app.controller('mainCtrl', function($scope, recognizeService) {
         $scope.isLoading = true;
 		
 		
-		
+		// if ($scope.input.source == 'link') {
 			recognizeService.recognize($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
 
@@ -89,7 +89,7 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             });
             $scope.isLoading = false;
         });
-            }
+
 		
         // Gọi hàm recognize của service
         /*recognizeService.recognize($scope.input.imageLink).then(result => {
