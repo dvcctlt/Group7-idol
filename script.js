@@ -15,7 +15,7 @@ app.factory('recognizeService', function($http) {
         }
     }
 });
-app.factory('upload', [
+/*app.factory('upload', [
     '$http',
     ($http) => ({
         uploadImage(imgBase64) {
@@ -35,7 +35,7 @@ app.factory('upload', [
             });
         },
     })
-]);
+]);*/
 app.directive("fileread", [() => ({
         scope: {
             fileread: "="
@@ -64,54 +64,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
     });
 
     // Gọi hàm này khi người dùng click button "Nhận diện"
-	$scope.recognize = () => {
-            if (!isImageValid() || $scope.isLoading)
-                return;
-
-            $scope.isLoading = true;
-
-           // if ($scope.input.source == 'link') {
-            recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-            $scope.faces = result.data;
-			$scope.faceDisplay = result.data.map(rs => {
-                return {
-                    style: {
-                        top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
-                        width: rs.face.width + 'px',
-                        height: rs.face.height + 'px'
-                    },
-                    name: rs.idol.name
-                }
-            });
-            $scope.isLoading = false;
-			});
-        /*} else {
-                upload.recognize($scope.input.imageLink).then(result => {
-                    //let url = result.data.url;
-                    let url = result.data.data.link;
-                    $scope.input.imageLink = url;
-                    return url;
-                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-						$scope.faces = result.data;
-			            $scope.faceDisplay = result.data.map(rs => {
-							return {
-								style: {
-								top: rs.face.top + 'px',
-								left: rs.face.left + 'px',
-								width: rs.face.width + 'px',
-								height: rs.face.height + 'px'
-								},
-								name: rs.idol.name
-							}
-						});
-						$scope.isLoading = false;
-					});
-					);
-			}*/
-        }
-		
-  /*  $scope.recognize = function() {
+	
+	$scope.recognize = function() {
         if ($scope.isLoading)
             return;
 
@@ -119,53 +73,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
         // Gọi hàm recognize của service
        recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
            $scope.faces = result.data;
-		
-		
-		if ($scope.input.source == 'link') {
-            recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-            $scope.faces = result.data;
-			$scope.faceDisplay = result.data.map(rs => {
-                return {
-                    style: {
-                        top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
-                        width: rs.face.width + 'px',
-                        height: rs.face.height + 'px'
-                    },
-                    name: rs.idol.name
-                }
-            });
-            $scope.isLoading = false;
-			});
-        } else {
-                upload.recognize($scope.input.imageLink).then(result => {
-                    //let url = result.data.url;
-                    let url = result.data.data.link;
-                    $scope.input.imageLink = url;
-                    return url;
-                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
-						$scope.faces = result.data;
-			            $scope.faceDisplay = result.data.map(rs => {
-							return {
-								style: {
-								top: rs.face.top + 'px',
-								left: rs.face.left + 'px',
-								width: rs.face.width + 'px',
-								height: rs.face.height + 'px'
-								},
-								name: rs.idol.name
-							}
-						});
-						$scope.isLoading = false;
-					});
-					);
-			}
-		
-		
-		
-
             // Dựa vào kết quả trả về để set style động cho class idol-face
-         /*   $scope.faceDisplay = result.data.map(rs => {
+            $scope.faceDisplay = result.data.map(rs => {
                 return {
                     style: {
                         top: rs.face.top + 'px',
@@ -178,7 +87,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             });
             $scope.isLoading = false; 
         });
-    }*/
+    }
 
 
 	
