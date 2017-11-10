@@ -15,6 +15,26 @@ app.factory('recognizeService', function($http) {
         }
     }
 });
+app.factory('upload', function($http) {
+    return {
+       recognize: function(imgBase64) {
+            //toastr.info("Đang up ảnh");
+            const url = 'https://api.imgur.com/3/image';
+            var base = imgBase64.replace('data:image/jpeg;base64,', '').replace('data:image/png;base64,', '').replace('data:image/gif;base64,', '');
+
+            return $http({
+                method: 'POST',
+                url,
+                headers: {
+                    'Authorization': 'Client-ID c8dadae2b00f61d'
+                },
+                data: {
+                    image: base
+                }
+            });
+        }
+    }
+});
 
 app.directive("fileread", [() => ({
         scope: {
@@ -52,6 +72,23 @@ app.controller('mainCtrl', function($scope, recognizeService) {
         // Gọi hàm recognize của service
         recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
             $scope.faces = result.data;
+		
+		
+		if ($scope.input.source == 'link') {
+                 recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+            $scope.faces = result.data;
+            } else {
+                upload.recognize($scope.input.imageLink).then(result => {
+                    //let url = result.data.url;
+                    let url = result.data.data.link;
+                    $scope.input.imageLink = url;
+                    return url;
+                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
+            $scope.faces = result.data;);
+            }
+		
+		
+		
 
             // Dựa vào kết quả trả về để set style động cho class idol-face
             $scope.faceDisplay = result.data.map(rs => {
