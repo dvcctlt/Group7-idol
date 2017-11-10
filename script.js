@@ -90,6 +90,7 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             $scope.isLoading = false;
         });
             } else {
+		    $scope.isLoading = true;
                 recognizeService.recognize($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
 
