@@ -28,7 +28,6 @@ app.factory('upload', [
                 url,
                 headers: {
                     'Authorization': 'Client-ID 8201546b0614bb1',
-			'Content-Type':'text/plain'
                 },
                 data: {
                     image: base
