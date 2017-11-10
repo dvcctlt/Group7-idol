@@ -70,7 +70,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
 
             $scope.isLoading = true;
 
-            if ($scope.input.source == 'link') {
+           // if ($scope.input.source == 'link') {
             recognizeService.recognize($scope.input.imageLink).then(result => {//co sua
             $scope.faces = result.data;
 			$scope.faceDisplay = result.data.map(rs => {
@@ -86,7 +86,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             });
             $scope.isLoading = false;
 			});
-        } else {
+        /*} else {
                 upload.recognize($scope.input.imageLink).then(result => {
                     //let url = result.data.url;
                     let url = result.data.data.link;
@@ -108,7 +108,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
 						$scope.isLoading = false;
 					});
 					);
-			}
+			}*/
         }
 		
   /*  $scope.recognize = function() {
