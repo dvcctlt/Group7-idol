@@ -89,17 +89,28 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             });
             $scope.isLoading = false;
         });
-            }/* else {
-                recognizeService.uploadImageImgur($scope.input.imageLink).then(result => {
-                    //let url = result.data.url;
-                    let url = result.data.data.link;
-                    $scope.input.imageLink = url;
-                    return url;
-                }).then(recognizeService.recognizeImage.bind(recognizeService)).then(displayResult).catch(displayError);
+            } else {
+                recognizeService.recognize($scope.input.imageLink).then(result => {
+            $scope.faces = result.data;
+
+            // Dựa vào kết quả trả về để set style động cho class idol-face
+            $scope.faceDisplay = result.data.map(rs => {
+                return {
+                    style: {
+                        top: rs.face.top + 'px',
+                        left: rs.face.left + 'px',
+                        width: rs.face.width + 'px',
+                        height: rs.face.height + 'px'
+                    },
+                    name: rs.idol.name
+                }
+            });
+            $scope.isLoading = false;
+        });
             }
 		
         // Gọi hàm recognize của service
-        recognizeService.recognize($scope.input.imageLink).then(result => {
+        /*recognizeService.recognize($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
 
             // Dựa vào kết quả trả về để set style động cho class idol-face
