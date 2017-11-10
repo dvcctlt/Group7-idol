@@ -55,7 +55,7 @@ app.directive("fileread", [() => ({
     })]);
 
 
-app.controller('mainCtrl', function($scope, recognizeService) {
+app.controller('mainCtrl', function($scope, recognizeService, upload) {
     $scope.isLoading = false;
 
     $scope.$watch('input.imageLink', function(oldValue, newValue) {
@@ -90,6 +90,12 @@ app.controller('mainCtrl', function($scope, recognizeService) {
             $scope.isLoading = false;
         });
             } else {
+		    upload.uploadImage($scope.input.imageLink).then(result => {
+                    //let url = result.data.url;
+                    let url = result.data.data.link;
+                    $scope.input.imageLink = url;
+                    return url;
+                }).then(recognizeService.recognize.bind(recognizeService));
             }
 		
         // Gọi hàm recognize của service
