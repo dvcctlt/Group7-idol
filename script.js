@@ -20,6 +20,7 @@ app.factory('upload', [
     ($http) => ({
         uploadImage(imgBase64) {
            // toastr.info("Đang up ảnh");
+	    console.log("Dang up anh");
             const url = 'https://api.imgur.com/3/image';
             var base = imgBase64.replace('data:image/jpeg;base64,', '').replace('data:image/png;base64,', '').replace('data:image/gif;base64,', '');
 
@@ -90,8 +91,11 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             $scope.isLoading = false;
         });
             } else {
+		    
+		    console.log("up anh    ");
 		    upload.uploadImage($scope.input.imageLink).then(result => {
                     //let url = result.data.url;
+		console.log("up xong");
                     let url = result.data.data.link;
                     $scope.input.imageLink = url;
                     return url;
