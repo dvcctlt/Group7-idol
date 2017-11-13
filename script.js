@@ -27,7 +27,7 @@ app.factory('upload', [
                 method: 'POST',
                 url,
                 headers: {
-                    'Authorization': 'Client-ID 8201546b0614bb1',
+                    'Authorization': 'Client-ID 4e225ddc797a45f',
                 },
                 data: {
                     image: base
