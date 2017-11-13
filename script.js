@@ -100,7 +100,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                     $scope.input.imageLink = url;
 			console.log("url");    
                     return url;
-                }).then(recognizeService.recognize.bind(recognizeService)
+                }).then(recognizeService.recognize.bind(recognizeService));
             }
 		
         // Gọi hàm recognize của service
