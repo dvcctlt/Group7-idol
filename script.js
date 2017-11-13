@@ -91,16 +91,11 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             $scope.isLoading = false;
         });
             } else {
-		    
-		    console.log("up anh    ");
-		    upload.uploadImage($scope.input.imageLink).then(result => {
+		 upload.uploadImage($scope.input.imageLink).then(result => {
                     //let url = result.data.url;
-		console.log("up xong");
                     let url = result.data.data.link;
                     $scope.input.imageLink = url;
-			console.log(url);    
-                    return url;
-                }).then(recognizeService.recognize($scope.input.imageLink).then(result => {
+					recognizeService.recognize($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
 
             // Dựa vào kết quả trả về để set style động cho class idol-face
@@ -116,7 +111,9 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                 }
             });
             $scope.isLoading = false;
-        }));
+        });
+                    return url;
+                })//.then(recognizeService.recognize($scope.input.imageLink))
             }
 		
         // Gọi hàm recognize của service
