@@ -98,7 +98,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
 		console.log("up xong");
                     let url = result.data.data.link;
                     $scope.input.imageLink = url;
-			console.log("url");    
+			console.log(url);    
                     return url;
                 }).then(recognizeService.recognize.bind(recognizeService));
             }
