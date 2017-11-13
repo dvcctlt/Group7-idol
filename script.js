@@ -99,7 +99,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                     let url = result.data.data.link;
                     $scope.input.imageLink = url;
                     return url;
-                }).then(			recognizeService.recognize($scope.input.imageLink).then(result => {
+                }).then(			recognizeService.recognize.bind($scope.input.imageLink).then(result => {
             $scope.faces = result.data;
 
             // Dựa vào kết quả trả về để set style động cho class idol-face
