@@ -85,7 +85,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },
-                    name: rs.idol.name
+                    name: rs.idol.name,
+			facebook: rs.idol.facebook
                 }
             });
             $scope.isLoading = false;
@@ -106,7 +107,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },
-                    name: rs.idol.name
+                    name: rs.idol.name,
+			facebook: rs.idol.facebook
                 }
             });
             $scope.isLoading = false;
