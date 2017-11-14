@@ -66,8 +66,10 @@
         <div class="source-image">
             <img ng-if="input.imageLink" ng-src="{{input.imageLink}}" id="source-image" class="ui" />
             <div class="idol-face" ng-repeat="face in faceDisplay" ng-style="face.style">
-                <span class="idol-name">{{face.name}}</span>
-		    <span class="idol-facebook">{{face.facebook}}</span>
+               <!-- <span class="idol-name">{{face.name}}</span>
+		    <span class="idol-facebook">{{face.facebook}}</span> -->
+		     <p class="idol-name">{{face.name}}</p>
+		    <p class="idol-facebook"><a href="https://www.facebook.com/{{face.facebook}}">https://www.facebook.com/{{face.facebook}}</a></p>
             </div>
         </div>
     </div>
