@@ -6,7 +6,7 @@ app.factory('recognizeService', function($http) {
         recognize: function(imgLink) {
         //    var url = 'https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/hello';
 		//var url ='https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/Login-logout';
-		var url = https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/signIn;
+		var url = 'https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/signIn';
             return $http({
                 method: 'POST',
                 url,
