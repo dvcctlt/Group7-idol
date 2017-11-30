@@ -4,8 +4,8 @@ var app = angular.module('app', []);
 app.factory('recognizeService', function($http) {
     return {
         recognize: function(imgLink) {
-            //var url = 'https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/hello';
-		var url ='https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/Login-logout';
+            var url = 'https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/hello';
+		//var url ='https://wt-d981132ea35e2349c857bb4e6157e5ea-0.run.webtask.io/Login-logout';
             return $http({
                 method: 'POST',
                 url,
