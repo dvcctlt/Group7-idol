@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css"/>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="script.js"></script>
+    <title>Nhận diện nữ sinh Sư Phạm ( version experiment )</title>
+</head>
+
+<body ng-app="app" ng-controller="mainCtrl">
+	<div class="backgroundMenu">
+		<div class="navbar">
+			  <a href="#home">Nhận diện Idol</a>
+			  <a href="#contact">Giới thiệu về chúng tôi</a>
+			  <a href="./a.html">Đăng ký</a>
+		</div>
+	</div>
+    <div class="ui container">
+
+        <div class="ui container"></div>
+        <h1 id="home" class="section ui horizontal header divider">Nhận diện Idol ( version experiment )</h1>
+
+        <!-- Form để dán ảnh và submit -->
+        <div class="ui form">
+            <div class="inline fields">
+                <label for="fruit">Dán link hoặc upload ảnh</label>
+				<div class="field" ng-click="input.source = 'link'">
+					<div class="ui radio checkbox">
+						<input type="radio" name="source" ng-model="input.source" value="link" checked="checked" tabindex="0" class="hidden">
+						<label for="link">Dán link</label>
+					</div>
+				</div>
+				<div class="field" ng-click="input.source = 'file'">
+					<div class="ui radio checkbox">
+						<input type="radio" name="fruit" ng-model="input.source" value="file" tabindex="0" class="hidden">
+						<label for="file">Upload ảnh</label>
+					</div>
+				</div>
+            </div>
+
+            <div class="field">
+                <div ng-class="{loading: isLoading}" class="ui action input">
+                    <input type="text" ng-if="input.source == 'link'" ng-model="input.imageLink" checked="checked" placeholder="Link ảnh"/>
+                    <input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh"/>
+                    <button ng-disabled="isLoading || !input.imageLink" ng-click="recognize()" class="ui icon primary button">
+                        <span ng-if="!isLoading"><i class="search icon"></i>Tìm idol</span>
+                        <span ng-if="isLoading"><i class="spinner loading icon"></i>Đang tìm, chờ tí</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
+        <div class="source-image">
+            <img ng-if="input.imageLink" ng-src="{{input.imageLink}}" id="source-image" class="ui" />
+        </div>
+    </div>
+        <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
+        <br>
+		<center>
+			<div class="addUser" >
+				<form>
+					<h1 class="section ui horizontal header divider" id="addUser">Thêm Idol</h1>
+					<table>
+						<tr>
+							<td>
+								<th>ID Facebook:</th>
+								<td class="ui action input"><input type="text" name="id_facebook"  /></td>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<th>User data</th>
+								<td class="ui action input"><input type="text" name="user_data"  /></td>
+							</td>
+						</tr>
+						
+					</table>
+						<input type="submit" value="Thêm" />
+				</form>
+			</div>
+		</center>
+		<center>
+			<div>
+				<h1 class="section ui horizontal header divider" id="contact">Thông tin về chúng tôi</h1>
+				<p>Chúng tôi hiện đang là sinh viên năm cuối chuyên ngành công nghệ thông tin trường đại học Sư phạm Đà Nẵng.</p></br>
+				<p>*Nhóm thực hiện gồm có 5 người: </p></br>
+				<p>- Đoàn Văn Cường</p>
+				<p>- Nguyễn Văn Hà</p>
+				<p>- Huỳnh Đức Khoản</p>
+				<p>- Võ Duy Khánh</p>
+				<p>- Minh Vũ</p>
+				<p>*Giáo viên hướng dẫn : Nguyễn Thanh Tuấn</p>
+			</div>
+		</center>
+</body>
+
+</html>
