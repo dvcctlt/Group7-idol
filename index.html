@@ -1,14 +1,25 @@
-<!DOCTYPE html>
 <html>
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css"/>
-    <link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="script.js"></script>
+	<script>
+		function loginForm(){
+			var x = document.getElementById("loginform");
+			if (x.style.display === "none") {
+				x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+	</script>
     <title>Nhận diện Idol ( version experiment )</title>
 </head>
 
@@ -19,6 +30,8 @@
   <a href="#search">Tiềm kiếm Idol</a>
   <a href="#contact">Giới thiệu về chúng tôi</a>
   <a href="#feedback">Đánh giá ứng dụng</a>
+  <a href="#loginform" onclick="loginForm()" >Đăng nhập</a>
+  <a href="">Đăng ký</a>
 </div>
 </div>
     <div class="ui container">
@@ -101,26 +114,75 @@
                 </div>
             </div>
         </div>
-		<div class="mostsearch">
-		   <h3>Idol được tìm kiếm nhiều</h3>
-		 
-			<!--<img src="./images/tamtit.jpg"> 
-	   
-			<img src="./images/ngoctrinh.jpg">
-			 
-			<img src="./images/midu.jpg">
-				  
-			<img src="./images/khangan.jpg"> -->
+		
+		<div>
 			
-			</div>
-		   
-		   
+		</div>
         </div> 
 
         <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
 
         <br>
-
+		<center>
+		<div id="loginform" >
+		
+			<form>
+			<h1 class="section ui horizontal header divider" class="loginform">Login</h1>
+				<table>
+					<tr>
+						<td>
+							<th>Tên đăng nhập:</th>
+							<td class="ui action input"><input type="text" name="username"  /></td>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<th>mật khẩu:</th>
+							<td class="ui action input"><input type="password" name="password"  /></td>
+						</td>
+					</tr>
+					
+				</table>
+				<input type="submit" value="Đăng nhập" />
+			</form>
+		</div>
+		</center>
+		<center>
+		<div class="addUser" >
+			<form>
+			<h1 class="section ui horizontal header divider" id="addUser">Thêm Idol</h1>
+				<table>
+					<tr>
+						<td>
+							<th>ID Facebook:</th>
+							<td class="ui action input"><input type="text" name="id_facebook"  /></td>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<th>User data</th>
+							<td class="ui action input"><input type="text" name="user_data"  /></td>
+						</td>
+					</tr>
+					
+				</table>
+				<input type="submit" value="Thêm" />
+			</form>
+		</div>
+		</center>
+		<center>
+		<div>
+			<h1 class="section ui horizontal header divider" id="contact">Thông tin về chúng tôi</h1>
+		<p>Chúng tôi hiện đang là sinh viên năm cuối chuyên ngành công nghệ thông tin trường đại học Sư phạm Đà Nẵng.</p></br>
+		<p>*Nhóm thực hiện gồm có 5 người: </p></br>
+		<p>- Đoàn Văn Cường</p>
+		<p>- Nguyễn Văn Hà</p>
+		<p>- Huỳnh Đức Khoản</p>
+		<p>- Võ Duy Khánh</p>
+		<p>- Minh Vũ</p>
+		<p>*Giáo viên hướng dẫn : Nguyễn Thanh Tuấn</p>
+		</div>
+		</center>
 </body>
 
 </html>
