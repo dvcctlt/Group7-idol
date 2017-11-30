@@ -28,3 +28,57 @@
     min-width: 100px;
     position: absolute;
 }
+
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    
+   /*position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 55%; /* Full width */
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.backgroundMenu{
+	  background-color: #333;
+}
+.labelidol label{
+	font-weight:bold;
+}
+
+
+#loginform {
+	display:none;
+}
+
+.addUser{
+margin-bottom:35px;
+}
+
+th{
+	color:gray;
+}
+
+input[type=submit]{
+	margin-top:10px;
+	font-size:15px;
+	color:white;
+	width:100px;
+	height:40px;
+	border-radius:6px;
+	background-color:#2185d0;
+}
+input[type=submit]:hover{
+	background-color:#3366FF;
+}
