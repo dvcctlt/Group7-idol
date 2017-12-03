@@ -41,6 +41,5 @@ app.controller('mainCtrl', function($scope, recognizeService ) {
             $scope.isLoading = false;
 			});
 		}
-    }
 
 });
