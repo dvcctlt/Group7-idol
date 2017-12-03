@@ -19,7 +19,7 @@ app.factory('recognizeService', function($http) {
     }
 });
 
-app.controller('mainCtrl', function($scope, recognizeService, upload) {
+app.controller('mainCtrl', function($scope, recognizeService ) {
     $scope.isLoading = false;
 
     $scope.$watch('input.imageLink', function(oldValue, newValue) {
@@ -35,12 +35,9 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
         $scope.isLoading = true;
 		
 		recognizeService.recognize($scope.input.id, $scope.input.use).then(result => {
-            $scope.faces = result.data;
-			$scope.faceDisplay = result.data.map(rs => {
-                return {
-                    massage: rs.user.name
-                }
-            });
+			if(res.statusCode == 200){
+				alert('Tạo tài khoảng thành công');
+			}else{alert('Vui lòng chọn mã cá nhân khác')}
             $scope.isLoading = false;
 			});
 		}
