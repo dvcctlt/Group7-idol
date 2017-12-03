@@ -21,17 +21,10 @@ app.factory('recognizeService', function($http) {
 
 app.controller('mainCtrl', function($scope, recognizeService ) {
     $scope.isLoading = false;
-
-    $scope.$watch('input.imageLink', function(oldValue, newValue) {
-        $scope.faces = [];
-        $scope.faceDisplay = [];
-    });
-
     // Gọi hàm này khi người dùng click button "Nhận diện"
     $scope.recognize = function() {
         if ($scope.isLoading)
             return;
-
         $scope.isLoading = true;
 		
 		recognizeService.recognize($scope.input.id, $scope.input.use).then(result => {
