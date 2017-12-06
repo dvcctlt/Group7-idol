@@ -28,9 +28,9 @@ app.controller('mainCtrl', function($scope, recognizeService ) {
         $scope.isLoading = true;
 		
 		recognizeService.recognize($scope.input.id, $scope.input.use).then(result => {
-			//if(res.status === 200){
+			if(res.status === 200){
 				alert('Tạo tài khoảng thành công');
-			//}else{alert('Vui lòng chọn mã cá nhân khác');}
+			}else{alert('Vui lòng chọn mã cá nhân khác');}
             $scope.isLoading = false;
 			});
 		}
