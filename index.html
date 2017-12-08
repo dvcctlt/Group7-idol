@@ -1,109 +1,203 @@
 <html>
-   <head>
-      	<meta charset="utf-8">
-      	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.1.8/semantic.min.css" />
-      	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
-      	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css"/>
-      	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      	<link rel="stylesheet" href="./style.css" />
-     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
-      	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      	<script src="scriptindex.js"></script>
-      	<title>Nhận diện nữ sinh Sư Phạm</title>
-   </head>
-   <body ng-app="app" ng-controller="mainCtrl">
-      <div class="backgroundMenu">
-         <div class="navbar">
-            <a href="#home">Trang Chủ</a>
-            <a href="#search">Công Nghệ</a>
-            <a href="#contact">Ý Tưởng</a>
-            <a href="#contact">Giới Thiệu</a>
-            <a href="#" class="navend">Bình Luận</a>
-         </div>
-      </div>
-      <div class="ui container">
-         <div class="ui container"></div>
-         <h1 id="home" class="section ui horizontal header divider">TÌM KIẾM NỮ SINH</h1>
-         <!-- Form để dán ảnh và submit -->
-         <div class="ui form">
-            <div class="ui two column centered grid selectField" ng-init="input.source = 'link'">
-               <div class="field" ng-click="input.source = 'link'">
-                  <div class="ui radio checkbox">
-                     <input type="radio" name="source" ng-model="input.source" value="link" tabindex="0" class="hidden">
-                     <label for="link">Dán link</label>
-                  </div>
-               </div>
-               <div class="field" ng-click="input.source = 'file'">
-                  <div class="ui radio checkbox">
-                     <input type="radio" name="fruit" ng-model="input.source" value="file" tabindex="0" class="hidden">
-                     <label for="file">Up Ảnh</label>
-                  </div>
-               </div>
-            </div>
-            <div class="field formText">
-               <div ng-class="{loading: isLoading}" class="ui action input">
-                  <input type="text" ng-if="input.source == 'link'" ng-model="input.imageLink" placeholder="Link ảnh"/>
-                  <input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh"/>
-                  <button ng-disabled="isLoading || !input.imageLink" ng-click="recognize()" class="ui icon primary button">
-                  <span ng-if="!isLoading" ><i class="search icon"></i>Tìm idol</span>
-                  <span ng-if="isLoading"><i class="spinner loading icon"></i>Đang tìm, chờ tí</span>
-                  </button>
-               </div>
-            </div>
-         </div>
-         <br>
-         <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
-         <div class="ui center aligned basic segment" ng-init="face.name = 'Huỳnh Đức Khoản';face.facebook = 'khoan97'" ng-class="loadingClass">
-	         <div class="source-image">
-	            <img ng-if="input.imageLink" ng-src="{{input.imageLink}}" id="source-image" class="ui" />
-	            <div class="idol-face" ng-repeat="face in faceDisplay" ng-style="face.style">
-	               <p class="idol-name">{{face.name}}</p>
-	               <br />
-	               <p class="idol-facebook"><a href="https://www.facebook.com/{{face.facebook}}">{{face.facebook}}</a></p>
-	            </div>
-         	</div>
-         	<div class="ui cards" ng-if="isLoading">
-			  <div class="card">
-			    <div class="content">
-			      <div class="header center">
-			        {{face.name}}
-			      </div>
-			      <div class="meta">
-			        Sinh Viên Sư Phạm
-			      </div>
-			      <div class="description">
-			        Đây là {{face.name}} bạn có thể liên hệ với người ngày bằng cách click facebook.
-			      </div>
-			    </div>
-			    <div class="extra content">
-			      <div class="ui buttons field">
-			        <a href="https://facebook.com/{{face.facebook}}" target="_blank"><div class="ui blue button">Facebook</div></a>
-			      </div>
-			    </div>
-			  </div>
-			 </div>
-     	</div>
 
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="scriptindex.js"></script>
+	<title>Nhận diện nữ sinh Sư Phạm</title>
+</head>
 
-            <!-- Hiển thị ảnh của idol và kết quả nhận diện -->
-      <center>
-         <div>
-            <h1 class="section ui horizontal header divider" id="contact">Thông tin về chúng tôi</h1>
-            <p>Chúng tôi hiện đang là sinh viên năm cuối chuyên ngành công nghệ thông tin trường đại học Sư phạm Đà Nẵng.</p>
-            </br>
-            <p>*Nhóm thực hiện gồm có 5 người: </p>
-            </br>
-            <p>- Đoàn Văn Cường</p>
-            <p>- Nguyễn Văn Hà</p>
-            <p>- Huỳnh Đức Khoản</p>
-            <p>- Võ Duy Khánh</p>
-            <p>- Minh Vũ</p>
-            <p>*Giáo viên hướng dẫn : Nguyễn Thanh Tuấn</p>
-         </div>
-      </center>
-      </div>
+<body ng-app="app" ng-controller="mainCtrl">
+	<div id="fb-root"></div>
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=492581757793976';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="backgroundMenu">
+		<div class="navbar">
+			<a href="#home">Trang Chủ</a>
+			<a href="#search">Công Nghệ</a>
+			<a href="#contact">Ý Tưởng</a>
+			<a href="#contact">Giới Thiệu</a>
+			<a href="#" class="navend">Bình Luận</a>
+		</div>
+	</div>
+	<div class="ui container">
+		<div class="ui container"></div>
+		<h2 id="logoText" class="section ui horizontal header divider">TÌM KIẾM NỮ SINH</h2>
+		<!-- Form để dán ảnh và submit -->
+		<div class="ui form">
+			<div class="ui two column centered grid selectField" ng-init="input.source = 'link'">
+				<div class="field" ng-click="input.source = 'link'">
+					<div class="ui radio checkbox">
+						<input type="radio" name="source" ng-model="input.source" value="link" tabindex="0" class="hidden">
+						<label for="link">Dán link</label>
+					</div>
+				</div>
+				<div class="field" ng-click="input.source = 'file'">
+					<div class="ui radio checkbox">
+						<input type="radio" name="fruit" ng-model="input.source" value="file" tabindex="0" class="hidden">
+						<label for="file">Up Ảnh</label>
+					</div>
+				</div>
+			</div>
+			<div class="field formText">
+				<div ng-class="{loading: isLoading}" class="ui action input">
+					<input type="text" ng-if="input.source == 'link'" ng-model="input.imageLink" placeholder="Link ảnh" />
+					<input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh" />
+					<button ng-disabled="isLoading || !input.imageLink" ng-click="recognize()" class="ui icon primary button">
+						<span ng-if="!isLoading">
+							<i class="search icon"></i>Tìm idol</span>
+						<span ng-if="isLoading">
+							<i class="spinner loading icon"></i>Đang tìm, chờ tí</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- Hiển thị ảnh của idol và kết quả nhận diện -->
+		<div class="ui center aligned basic segment" ng-init="face.name = 'Huỳnh Đức Khoản';face.facebook = 'khoan97'" ng-class="loadingClass">
+			<div class="section ui horizontal header resultLogo">Kết quả tìm kiếm</div>
+			<div class="dataImage ui grid">
+				<div class="source-image ten wide column">
+					<img ng-if="input.imageLink" ng-src="{{input.imageLink}}" id="source-image" class="ui" />
+					<div class="idol-face" ng-repeat="face in faceDisplay" ng-style="face.style">
+						<p class="idol-name">{{face.name}}</p>
+						<br />
+						<p class="idol-facebook">
+							<a href="https://www.facebook.com/{{face.facebook}}">{{face.facebook}}</a>
+						</p>
+					</div>
+				</div>
+				<div class="ui cards four wide column" ng-if="!isLoading">
+					<div class="card">
+						<div class="content">
+							<div class="header center">
+								{{face.name}}
+							</div>
+							<div class="meta">
+								Sinh Viên Sư Phạm
+							</div>
+							<div class="description">
+								Đây là {{face.name}} bạn có thể liên hệ với người ngày bằng cách click facebook.
+							</div>
+						</div>
+						<div class="extra content">
+							<div class="ui buttons field">
+								<a href="https://facebook.com/{{face.facebook}}" target="_blank">
+									<div class="ui blue button">Facebook</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h2 id="logoText" class="section ui horizontal header divider">Công Nghệ</h2>
+		<div id="technology">
+			<table class="ui five column table celled">
+				<thead>
+					<tr>
+						<th>NodeJS</th>
+						<th>Webtask</th>
+						<th>Microsoft face API</th>
+						<th>GitHub</th>
+						<th>AngularJS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="top aligned">
+						<td>Sử dụng làm back-end cho trang web upload ảnh lên Face API của Microsoft
+							<br/>
+							<br/> Tài liệu tham khảo: -https://www.w3schools.com/nodejs/ -https://learnnode.com/
+						</td>
+						<td>Làm serverless Architecture lưu trữ code của trang web...
+							<br/>
+							<br/> Tài liệu tham khảo: -http://webtask.io/
+						</td>
+						<td>Dịch vụ nhận diện khuôn mặt của microsoft.
+							<br/>
+							<br/> Tài liệu tham khảo: -https://azure.microsoft.com/en-us/services/cognitive-services/face/
+						</td>
+						<td>Làm server để deploy trang web lên internet.
+							<br/> Tài liệu tham khảo: -https://www.github.com
+						</td>
+						<td>Sử dụng làm Front-end của trang web.
+							<br/>
+							<br/> Tài liệu tham khảo: -http://angularjs.io/ -https://www.w3schools.com/angular/ -http://www.learn-angular.org/
+							<br/>
+							<br/>
+							<br/>
+						</td>
+				</tbody>
+			</table>
+		</div>
+		<h2 id="logoText" class="section ui horizontal header divider">Ý Tưởng</h2>
+		<div class="ui attached message">
+			<div class="header">
+				Cơ sở hình thành ý tưởng?
+			</div>
+			<p>Bạn thấy như thế nào?</p>
+		</div>
+		<form class="ui form attached fluid segment">
+			Đây là ý tưởng của chúng tôi....Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng
+			tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng
+			của chúng tôi.... Đây là ý tưởng của chúng tôi....
 
-   </body>
+		</form>
+		<div class="ui bottom attached warning message">
+			<i class="icon help"></i> Bạn thấy ý tưởng này xuất sắc
+			<a href="#">Liên hệ</a> với chúng tôi.
+		</div>
+		<div>
+			<h2 id="logoText" class="section ui horizontal header divider">Giới thiệu</h2>
+			<div class="ui attached message">
+				<div class="header">
+					Lý do chọn đề tài
+				</div>
+			</div>
+			<form class="ui form attached fluid segment">
+				Lý do chọn đề tài? Lý do chọn đề tài? Lý do chọn đề tài?
+				<br/> Lý do chọn đề tài? Lý do chọn đề tài? Lý do chọn đề tài?
+				<br/> Lý do chọn đề tài?
+				<br/> Lý do chọn đề tài?
+				<br/> Lý do chọn đề tài?
+				<br/> Lý do chọn đề tài?
+				<br/>
+			</form>
+			<div class="ui attached message">
+				<div class="header">
+					Thành viên trong nhóm :
+				</div>
+			</div>
+			<form class="ui form attached fluid segment">
+				Giới thiệu về thành viên nhóm: nhóm gồm 5 thành viên :
+				<ul>
+					<li>Đoàn Văn Cường.</li>
+					<li>Huỳnh Đức Khoản.</li>
+					<li>Nguyễn Văn Hà.</li>
+					<li>Võ Duy Khánh.</li>
+					<li>Nguyễn Minh Vũ. </li>
+				</ul>
+			</form>
+			<div class="ui attached message">
+				<div class="header">
+					Giảng viên hướng dẫn: Ths.Nguyễn Thanh Tuấn
+				</div>
+			</div>
+			<div class="fb-comments" data-href="https://dvcctlt.github.io/Group7-idol/" data-numposts="5"></div>
+		</div>
+</body>
+
 </html>
-

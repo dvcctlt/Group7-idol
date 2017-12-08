@@ -1,6 +1,21 @@
-.cards {
-    display: inline-block;
-    float: right;
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+.header {
+    font-family: 'Roboto', sans-serif !important;
+}
+#logoText {
+    color : #828282;
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+.resultLogo {
+    font-size: 17px;
+    color: #4F4F4F;
+    padding-bottom: 20px;
+}
+.cards > .card {
+    width: 100% !important;
 }
 .source-image {
     position: relative;
