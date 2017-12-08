@@ -4,10 +4,14 @@ body {
 .header {
     font-family: 'Roboto', sans-serif !important;
 }
-#logoText {
-    color : #828282;
-    font-family: 'Roboto';
-    font-weight: bold;
+.menu {
+    font-family: 'Roboto', sans-serif !important;
+}
+.logoText {
+    color : #828282 !important;
+    font-family: 'Roboto'!important;
+    font-weight: bold !important;
+    padding-top: 50px !important;
 }
 .resultLogo {
     font-size: 17px;
@@ -51,6 +55,7 @@ body {
     overflow: hidden;
     width: 480px;
     margin: 0 auto;
+
 }
 
 .selectField{
@@ -104,4 +109,7 @@ input[type=submit]{
 }
 input[type=submit]:hover{
 	background-color:#3366FF;
+}
+.ui.comments {
+    max-width:100% !important;
 }

@@ -24,18 +24,18 @@
 			js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=492581757793976';
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-	<div class="backgroundMenu">
+	<div class="backgroundMenu ui fixed inverted menu">
 		<div class="navbar">
-			<a href="#home">Trang Chủ</a>
-			<a href="#search">Công Nghệ</a>
-			<a href="#contact">Ý Tưởng</a>
-			<a href="#contact">Giới Thiệu</a>
-			<a href="#" class="navend">Bình Luận</a>
+			<a href="#trangchu">Trang Chủ</a>
+			<a href="#congnghe">Công Nghệ</a>
+			<a href="#ytuong">Ý Tưởng</a>
+			<a href="#gioithieu">Giới Thiệu</a>
+			<a href="#binhluan" class="navend">Bình Luận</a>
 		</div>
 	</div>
 	<div class="ui container">
 		<div class="ui container"></div>
-		<h2 id="logoText" class="section ui horizontal header divider">TÌM KIẾM NỮ SINH</h2>
+		<h2 id="trangchu" class="logoText section ui horizontal header divider">TÌM KIẾM NỮ SINH</h2>
 		<!-- Form để dán ảnh và submit -->
 		<div class="ui form">
 			<div class="ui two column centered grid selectField" ng-init="input.source = 'link'">
@@ -104,7 +104,7 @@
 				</div>
 			</div>
 		</div>
-		<h2 id="logoText" class="section ui horizontal header divider">Công Nghệ</h2>
+		<h2 id="congnghe" class="logoText section ui horizontal header divider">Công Nghệ</h2>
 		<div id="technology">
 			<table class="ui five column table celled">
 				<thead>
@@ -140,10 +140,11 @@
 							<br/>
 							<br/>
 						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
-		<h2 id="logoText" class="section ui horizontal header divider">Ý Tưởng</h2>
+		<h2 id="ytuong" class="logoText section ui horizontal header divider">Ý Tưởng</h2>
 		<div class="ui attached message">
 			<div class="header">
 				Cơ sở hình thành ý tưởng?
@@ -161,7 +162,7 @@
 			<a href="#">Liên hệ</a> với chúng tôi.
 		</div>
 		<div>
-			<h2 id="logoText" class="section ui horizontal header divider">Giới thiệu</h2>
+			<h2 id="gioithieu" class="logoText section ui horizontal header divider">Giới thiệu</h2>
 			<div class="ui attached message">
 				<div class="header">
 					Lý do chọn đề tài
@@ -196,8 +197,12 @@
 					Giảng viên hướng dẫn: Ths.Nguyễn Thanh Tuấn
 				</div>
 			</div>
-			<div class="fb-comments" data-href="https://dvcctlt.github.io/Group7-idol/" data-numposts="5"></div>
 		</div>
+		<h2 id="binhluan" class="logoText section ui horizontal header divider">Bình luận</h2>
+		<div class="ui threaded comments">
+			<div class="fb-comments" data-href="https://dvcctlt.github.io/Group7-idol/" data-numposts="5"></div>				
+		</div>
+	</div>
 </body>
 
 </html>
