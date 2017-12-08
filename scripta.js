@@ -1,6 +1,5 @@
 // Code goes here
 var app = angular.module('app', []);
-
 app.factory('recognizeService', function($http) {
     return {
         recognize: function(idPrivate, userData) {
@@ -21,8 +20,10 @@ app.factory('recognizeService', function($http) {
 
 app.controller('mainCtrl', function($scope, recognizeService ) {
     $scope.isLoading = false;
+    $scope.loadingClass = 'loading form';
     // Gọi hàm này khi người dùng click button "Nhận diện"
     $scope.recognize = function() {
+
         if ($scope.isLoading)
             return;
         $scope.isLoading = true;
