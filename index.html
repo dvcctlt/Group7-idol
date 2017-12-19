@@ -67,7 +67,7 @@
 		</div>
 		<br>
 		<!-- Hiển thị ảnh của idol và kết quả nhận diện -->
-		<div class="ui center aligned basic segment" ng-init="face.name = 'Huỳnh Đức Khoản';face.facebook = 'khoan97'" ng-class="loadingClass">
+		<div class="ui center aligned basic segment" ng-class="loadingClass" ng-if="!isLoading">
 			<div class="section ui horizontal header resultLogo">Kết quả tìm kiếm</div>
 			<div class="dataImage ui grid">
 				<div class="source-image ten wide column">
@@ -80,8 +80,8 @@
 						</p>
 					</div>
 				</div>
-				<div class="ui cards four wide column" ng-if="!isLoading">
-					<div class="card">
+				<div class="ui cards four wide column">
+					<div class="card" ng-repeat="face in faceDisplay">
 						<div class="content">
 							<div class="header center">
 								{{face.name}}

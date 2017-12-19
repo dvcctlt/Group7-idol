@@ -83,7 +83,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                 return {
                     style: {
                         top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
+                        left: ( rs.face.left/2 + 90 ) + 'px',
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },
@@ -105,7 +105,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
                 return {
                     style: {
                         top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
+                        left: ( rs.face.left/2 + 90 ) + 'px',
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },

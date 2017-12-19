@@ -82,8 +82,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             $scope.faceDisplay = result.data.map(rs => {
                 return {
                     style: {
-                        top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
+                        top: ( rs.face.top*0.7 + 25 ) + 'px',
+                        left: ( rs.face.left/2 + 90 ) + 'px',
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },
@@ -104,8 +104,8 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             $scope.faceDisplay = result.data.map(rs => {
                 return {
                     style: {
-                        top: rs.face.top + 'px',
-                        left: rs.face.left + 'px',
+                        top: ( rs.face.top*0.5 ) + 'px',
+                        left: ( rs.face.left*0.55 + 70 ) + 'px',
                         width: rs.face.width + 'px',
                         height: rs.face.height + 'px'
                     },
