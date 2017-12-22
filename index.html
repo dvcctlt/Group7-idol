@@ -58,9 +58,9 @@
 					<input type="file" fileread="input.imageLink" ng-if="input.source == 'file'" placeholder="Upload ảnh" />
 					<button ng-disabled="isLoading || !input.imageLink" ng-click="recognize()" class="ui icon primary button">
 						<span ng-if="!isLoading">
-							<i class="search icon"></i>Tìm idol</span>
+							<i class="search icon"></i>Tìm Kiếm</span>
 						<span ng-if="isLoading">
-							<i class="spinner loading icon"></i>Đang tìm, chờ tí</span>
+							<i class="spinner loading icon"></i>Đang tìm, đừng vội!</span>
 					</button>
 				</div>
 			</div>
@@ -146,22 +146,6 @@
 		</div>
 		<h2 id="ytuong" class="logoText section ui horizontal header divider">Ý Tưởng</h2>
 		<div> <img src="https://i.imgur.com/63IIlie.png" alt="" width="100%" height="90%" /></div>
-		<!--<div class="ui attached message">
-			<div class="header">
-				Cơ sở hình thành ý tưởng?
-			</div>
-			<p>Bạn thấy như thế nào?</p>
-		</div>
-		<form class="ui form attached fluid segment">
-			Đây là ý tưởng của chúng tôi....Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng
-			tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng của chúng tôi.... Đây là ý tưởng
-			của chúng tôi.... Đây là ý tưởng của chúng tôi....
-
-		</form>
-		<div class="ui bottom attached warning message">
-			<i class="icon help"></i> Bạn thấy ý tưởng này xuất sắc
-			<a href="#">Liên hệ</a> với chúng tôi.
-		</div> -->
 		<div>
 			<h2 id="gioithieu" class="logoText section ui horizontal header divider">Giới thiệu</h2>
 			<div class="ui attached message">
@@ -170,12 +154,13 @@
 				</div>
 			</div>
 			<form class="ui form attached fluid segment">
-				Lý do chọn đề tài? Lý do chọn đề tài? Lý do chọn đề tài?
-				<br/> Lý do chọn đề tài? Lý do chọn đề tài? Lý do chọn đề tài?
-				<br/> Lý do chọn đề tài?
-				<br/> Lý do chọn đề tài?
-				<br/> Lý do chọn đề tài?
-				<br/> Lý do chọn đề tài?
+				<p>  Khi nói về web, chúng ta thường nghĩ về mô hình Client-server. Với mô hình client- server khi deploy,
+				developer cần phải setup một server bao gồm Web server và database server, do đó có thể dẫn tới những hạn chế sau
+				Khó khăn trong việc deploy, setup server. Tốn kém chi phí bảo trì server.
+				Tuy nhiên ngày nay khi dịch vụ điện toán đám mây phát triển, thì có một cách tiếp cận mới để giải quyết vấn đề trên đó là sử dụng kiến trúc Serverless. Bạn chỉ cần đăng kí dịch vụ đối với nhà cung cấp, họ sẽ cung cấp và quản lý tài nguyên giúp bạn.
+				Bạn chỉ việc viết code và không cần quan tâm đến việc deploy và cơ sở hạ tầng để chạy ứng dụng.<p/>
+				<p>  Các công nghệ ứng dựng Machine Learning ngày càng phổ biến và hữu ích với con người, các công ty cong nghệ lớn hầu như đều sở hữu một dịch vụ ứng dựng công nghệ Machine Learing. Microsoft Face API là một trong các dịch vụ như vậy. <p>
+				<p> Với mục đích là tìm hiểu các công nghệ điện toán đám mây, serverless, và dịch vụ Microsoft Face API, nhóm đã quyết định xây dựng ứng dụng "Nhận diện nữ sinh Sư Phạm".
 				<br/>
 			</form>
 			<div class="ui attached message">
@@ -186,11 +171,11 @@
 			<form class="ui form attached fluid segment">
 				Giới thiệu về thành viên nhóm: nhóm gồm 5 thành viên :
 				<ul>
-					<li>Đoàn Văn Cường.</li>
-					<li>Huỳnh Đức Khoản.</li>
-					<li>Nguyễn Văn Hà.</li>
-					<li>Võ Duy Khánh.</li>
-					<li>Nguyễn Minh Vũ. </li>
+					<li><a href="https://www.facebook.com/DVC.CNCT" >Đoàn Văn Cường.</a></li>
+					<li><a href="https://www.facebook.com/khoan97?fref=ts">Huỳnh Đức Khoản.<a/></li>
+					<li><a href="https://www.facebook.com/TheZapRok?fref=ts">Nguyễn Văn Hà.<a/></li>
+					<li><a href="https://www.facebook.com/KhanhRooney?fref=ts">Võ Duy Khánh.<a/></li>
+					<li><a href="https://www.facebook.com/minhvu.nguyen.5203?fref=ts">Nguyễn Minh Vũ.<a/> </li>
 				</ul>
 			</form>
 			<div class="ui attached message">
