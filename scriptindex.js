@@ -90,6 +90,7 @@ app.controller('mainCtrl', function($scope, recognizeService, upload) {
             $scope.isLoading = false;
         });
             } else {
+		    console.log($scope.input.imagelink);
 		 upload.uploadImage($scope.input.imageLink).then(result => {
                     let url = result.data.data.link;
                     $scope.input.imageLink = url;
